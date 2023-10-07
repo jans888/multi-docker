@@ -11,9 +11,9 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./nginx
-    ports: 
+    ports:
       - '3050:80'
-  api: 
+  api:
     build:
       dockerfile: Dockerfile.dev
       context: ./server
@@ -28,8 +28,8 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
-  client: 
-    build: 
+  client:
+    build:
       dockerfile: Dockerfile.dev
       context: ./client
     volumes:
