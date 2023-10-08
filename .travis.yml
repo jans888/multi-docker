@@ -3,19 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t jans888/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t janslv/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true jans888/react-test npm test
+  - docker run -e CI=true janslv/react-test npm test
 
 after_success:
-  - docker build -t jans888/multi-client ./client
-  - docker build -t jans888/multi-nginx ./nginx
-  - docker build -t jans888/multi-server ./server
-  - docker build -t jans888/multi-worker ./worker
-  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD" docker.io
-  - docker push jans888/multi-client
-  - docker push jans888/multi-nginx
-  - docker push jans888/multi-server
-  - docker push jans888/multi-worker
+  - docker build -t janslv/multi-client ./client
+  - docker build -t janslv/multi-nginx ./nginx
+  - docker build -t janslv/multi-server ./server
+  - docker build -t janslv/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push janslv/multi-client
+  - docker push janslv/multi-nginx
+  - docker push janslv/multi-server
+  - docker push janslv/multi-worker
