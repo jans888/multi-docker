@@ -18,3 +18,15 @@ after_success:
   - docker push janslv/multi-nginx
   - docker push janslv/multi-server
   - docker push janslv/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "Multi-application"
+  env: "Multi-application-env"
+  bucket_name: "elasticbeanstalk-us-east-2-184480728634"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
